@@ -1,9 +1,6 @@
-new classessssss
-
-
 class Database:
   def _init_(self):
-    self.historical data = []
+    self.historical_data = []
     self.forecasted_data = []
 
   def import_data(self, data):
