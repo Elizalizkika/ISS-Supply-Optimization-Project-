@@ -1,3 +1,6 @@
+new classes
+
+
 class Database:
   def _init_(self):
     self.historical data = []
