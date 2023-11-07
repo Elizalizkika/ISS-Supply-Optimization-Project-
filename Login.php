@@ -6,7 +6,7 @@
         exit;
     }
 
-    reqire_once "Config.php";
+    require_once 'Config.php'; //changed to single quotes due to syntax error
     $username = $password = "";
     $username_err = $password_err = $login_err = "";
 
