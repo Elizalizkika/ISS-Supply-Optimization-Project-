@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="your_stylesheet.css"> <!-- Replace with the path to your stylesheet -->
+    <link rel="stylesheet" href=""> //need to be adjusted
     <style>
         body {
             font: 14px sans-serif;
