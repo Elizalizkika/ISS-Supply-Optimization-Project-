@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictions</title>
+</head>
+<body>
+    <div id="input-section">
+        <form id="predictions-form" action=".">
+            <label><input type="date" name="date">Date</label>
+            
+            <label>Items</label>
+            <select id="consumables-list-dropdown" name="item">
+                <option disabled>Select Item</option>
+                <option value="water">water</option>
+                <option value="air">TBD</option>
+                <option value="TBD">TBD</option>
+                
+            </select>
+            <button type="submit">submit</button>
+        </form>
+    </div>
+    {% if result %}
+        <div id="display-results">
+            <h2>Result</h2>
+            <p>{{ result }}</p>
+        </div>
+    {% endif %}
+
+    <script src="predictions.js"></script>
+</body>
+</html>
