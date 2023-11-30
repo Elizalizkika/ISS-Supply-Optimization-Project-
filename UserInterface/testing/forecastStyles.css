@@ -12,7 +12,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
- 
 }
 #item-selection button{
     background-color: rgb(0, 0, 0);
