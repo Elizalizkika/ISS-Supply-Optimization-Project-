@@ -150,12 +150,15 @@ def create_table(consumable): #will be user selection / button
         {'Docking Days': dock_days_list,
          'Amount of Consumable to Send': consumable_to_send
         })
-    print(readable)
+    #print(readable)
+    table_html = readable.to_html(index=False)
+
+    return table_html
     
 #display(readable) - only works for jupyter notebook 
 #testing
-consumable = 'Water'
-consumable = 'Air'
-consumable = 'Pretreat Tanks'
+#consumable = 'Water'
+#consumable = 'Air'
+#consumable = 'Pretreat Tanks'
 
-create_table(consumable)
+#create_table(consumable)
