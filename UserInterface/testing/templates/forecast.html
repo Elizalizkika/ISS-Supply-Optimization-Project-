@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link href="forecastStyles.css" rel="stylesheet"/>-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='forecastStyles.css') }}">
+
+    <title>Forecast</title>
+</head>
+<body>
+    <div id="item-selection">
+        <form method="post" action="/run_script">
+            <button type="submit" id="water-button" name="consumable_name" value="Water">Water</button>
+            <button type="submit" id="air-button" name="consumable_name" value="Air">Air</button>
+            <button type="submit" id="pretreat-button" name="consumable_name" value="Pretreat Tanks">Pretreat Tanks</button>
+        </form>
+
+    <!--img and output will remain hidden unless button is selected-->
+
+    </div>
+    <div>
+            <!--html table  was prev table_html thats why it wasnt displaying-->
+        {% if table_data %}
+            {{ table_data|safe }}
+        {% endif %}
+    </div>
+
+   
+</body>
+</html>
