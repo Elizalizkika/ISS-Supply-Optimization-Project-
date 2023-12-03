@@ -1,31 +1,53 @@
-<?php
-    session_start();
+<?php 
+session_start(); 
+include "db_conn.php";
 
-    if(isset($$_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("loaction: welcome.php");
-        exit;
-    }
+if (isset($_POST['uname']) && isset($_POST['password'])) {
 
-    reqire_once "Config.php";
-    $username = $password = "";
-    $username_err = $password_err = $login_err = "";
+	function validate($data){
+       $data = trim($data);
+	   $data = stripslashes($data);
+	   $data = htmlspecialchars($data);
+	   return $data;
+	}
 
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(empty(trim($_POST["username"]))){
-            $username_err = "Please enter username.";
-        } else{
-            $username = trim($_POST["username"]);
-        }
+	$uname = validate($_POST['uname']);
+	$pass = validate($_POST['password']);
+
+	if (empty($uname)) {
+		header("Location: index.php?error=User Name is required");
+	    exit();
+	}else if(empty($pass)){
+        header("Location: index.php?error=Password is required");
+	    exit();
+	}else{
+		// hashing the password
+        $pass = md5($pass);
+
         
-        if(empty(trim($_POST["password"]))){
-            $password_err = "Please enter your password.";
-        } else{
-            $password = trim($_POST["password"]);
-        }
+		$sql = "SELECT * FROM users WHERE username='$uname' AND password='$pass'";
 
-        if(empty($username_err) && empty($password_err)){
-            $sql = "SELECT id, username, password FROM users WHERE username = ?";
-            
-            if 
-        }
-    }
+		$result = mysqli_query($conn, $sql);
+
+		if (mysqli_num_rows($result) === 1) {
+			$row = mysqli_fetch_assoc($result);
+            if ($row['username'] === $uname && $row['password'] === $pass) {
+            	$_SESSION['username'] = $row['username'];
+            	$_SESSION['name'] = $row['name'];
+            	$_SESSION['id'] = $row['id'];
+            	header("Location: home.php");
+		        exit();
+            }else{
+				header("Location: index.php?error=Incorect User name or password");
+		        exit();
+			}
+		}else{
+			header("Location: index.php?error=Incorect User name or password");
+	        exit();
+		}
+	}
+	
+}else{
+	header("Location: index.php");
+	exit();
+}
