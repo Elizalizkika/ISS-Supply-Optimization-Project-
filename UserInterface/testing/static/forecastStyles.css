@@ -1,36 +1,81 @@
+h1{
+    margin-left: 20%;
+}
 body {
     background-color: rgb(0, 0, 30);
     /*background-color: white;*/
-
     color: rgb(200, 200, 200);
     font-family: 'Inter', sans-serif;
+    /*
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    margin: 10%;
-    width: 35%;
+    */
+    margin-left: 15%;
+    /*width: 35%;*/
 }
 #item-selection {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 }
-#item-selection button{
+button{   /*had item-selection before  */
     background-color: rgb(0, 0, 0);
     padding: 30rem, 50rem, 30rem, 50rem;
     width: 150px;
     height: 50px;
     color: rgb(200, 200, 200);
-    border-radius: 10%;
+    border-radius: 10px;
 }
 
-#item-opt-output{
+
+
+#navbar{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 150px;
+    border-right: 5px solid;
+    color: black;
+    background-color: rgb(47,38,38);
+    padding: 55px 20px;
+    text-align: center;
+    font-size: 25px;
+    
+  }
+
+#display-info{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+   
+}
+
+p{
+    font-size: x-large;
+    border: 10px;
+    border-color: wheat;
+    margin-left: 5%;
+}
+#nextto-table{
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-img{
-    width: 200%;
-    margin-bottom: 5%;
+    margin-right: 5%;
+   
 }
 
+#largest-qty{
+    border: solid;
+    border-color:rgb(200, 200, 200);
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+#date{
+    border: solid;
+    border-color: rgb(200, 200, 200);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 100px;
+}

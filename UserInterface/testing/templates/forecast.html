@@ -9,22 +9,40 @@
     <title>Forecast</title>
 </head>
 <body>
-    <div id="item-selection">
+    <!--<nav id="item-selection">-->
+    <nav id="navbar">
+        <header>Select Consumable</header>
         <form method="post" action="/run_script">
             <button type="submit" id="water-button" name="consumable_name" value="Water">Water</button>
-            <button type="submit" id="air-button" name="consumable_name" value="Air">Air</button>
-            <button type="submit" id="pretreat-button" name="consumable_name" value="Pretreat Tanks">Pretreat Tanks</button>
+            <button type="submit" id="air-button" name="consumable_name" value="Oxygen">Oxygen</button>
+            <button type="submit" id="food-button" name="consumable_name" value="US Food BOBs">Food</button>
         </form>
 
     <!--img and output will remain hidden unless button is selected-->
 
-    </div>
+    </nav>
     <div>
-            <!--html table  was prev table_html thats why it wasnt displaying-->
-        {% if table_data %}
-            {{ table_data|safe }}
-        {% endif %}
+        <h1>Consumable selected: {{ consumable }}</h1>
     </div>
+    <div id="display-info">
+        <div id="cons_table">
+            <!--html table  was prev table_html thats why it wasnt displaying-->
+            {% if table_data %}
+                {{ table_data|safe }}
+            {% endif %}
+        </div>
+        <div id="nextto-table">
+            <div id="date">
+                <p>{{greatest_date}}</p>
+            </div>
+            <div id="largest-qty">
+                <p>{{qty}}</p>
+            </div>
+        </div>
+
+
+    </div>
+
 
    
 </body>
