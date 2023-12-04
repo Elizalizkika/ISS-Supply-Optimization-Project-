@@ -4,6 +4,11 @@ from q2q3_food import create_table_food
 from q2q3_oxygen import create_table_oxygen
 from q2q3_water import create_table_water
 import pandas as pd
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.offline as pyo
+import io
+import base64
 import os
 
 #app = Flask(__name__)  
@@ -24,6 +29,22 @@ def run_script(): #name of this function is where route goes
         #return render_template('forecast.html', table_data=table_data, consumable=consumable)
         info = create_table_water(consumable)
         table_d = info[0]
+        docking_days = info[3]
+        need_to_send_list = info[4]
+        #make plot ----------------
+        fig = px.scatter(x=docking_days, y=need_to_send_list, color=docking_days, color_continuous_scale='Viridis', title='Consumables Needed')
+        fig.update_layout(xaxis_title='Docking Days', yaxis_title='Amount Needed')
+        fig.update_layout(template='plotly_dark')
+        #fig.update_layout(plot_bgcolor='rgba(15, 15, 15, 0.7)', paper_bgcolor='rgba(15, 15, 15, 0.9)')
+        #Generate standalone HTML
+        plot_html = pyo.plot(fig, include_plotlyjs=False, output_type='div', show_link=False)
+
+        fig2 = px.line(x=docking_days, y=need_to_send_list)
+        fig2.update_layout(xaxis_title='Docking Days', yaxis_title='Amounts')
+        fig2.update_layout(template='plotly_dark')
+        line_html = fig2.to_html(include_plotlyjs=True, full_html=False)
+
+        #plot end----------------
         g_date = info[1]
         greatest_qty = info[2]
         greatest_date = f'Date with highest consumable amount: {g_date}'
@@ -31,12 +52,29 @@ def run_script(): #name of this function is where route goes
         table_data = table_d.to_html(classes='table', index=False)
         return render_template('forecast.html', table_data=table_data,
                                 consumable=consumable, greatest_date=greatest_date,
-                                qty=qty)
+                                qty=qty, plot_html=plot_html, line_html=line_html)
     elif consumable == 'Oxygen':
         #table_data = create_table_oxygen(consumable)
         #return render_template('forecast.html', table_data=table_data, consumable=consumable)
         info = create_table_oxygen(consumable)
         table_d = info[0]
+        docking_days = info[3]
+        need_to_send_list = info[4]
+        #make plot ----------------
+        fig = px.scatter(x=docking_days, y=need_to_send_list, color=docking_days, color_continuous_scale='Viridis', title='Consumables Needed')
+        fig.update_layout(xaxis_title='Docking Days', yaxis_title='Amount Needed')
+        fig.update_layout(template='plotly_dark')
+        #fig.update_layout(plot_bgcolor='rgba(15, 15, 15, 0.7)', paper_bgcolor='rgba(15, 15, 15, 0.9)')
+        #Generate standalone HTML
+        plot_html = pyo.plot(fig, include_plotlyjs=False, output_type='div', show_link=False)
+
+        fig2 = px.line(x=docking_days, y=need_to_send_list)
+        fig2.update_layout(xaxis_title='Docking Days', yaxis_title='Amounts')
+        fig2.update_layout(template='plotly_dark')
+        line_html = fig2.to_html(include_plotlyjs=True, full_html=False)
+
+        #plot end----------------
+       
         g_date = info[1]
         greatest_qty = info[2]
         greatest_date = f'Date with highest consumable amount: {g_date}'
@@ -44,11 +82,27 @@ def run_script(): #name of this function is where route goes
         table_data = table_d.to_html(classes='table', index=False)
         return render_template('forecast.html', table_data=table_data,
                                 consumable=consumable, greatest_date=greatest_date,
-                                qty=qty)
+                                qty=qty, plot_html=plot_html, line_html=line_html)
     elif consumable == 'US Food BOBs':
         #table_data = create_table_food(consumable)
         info = create_table_food(consumable)
         table_d = info[0]
+        docking_days = info[3]
+        need_to_send_list = info[4]
+        #make plot ----------------
+        fig = px.scatter(x=docking_days, y=need_to_send_list, color=docking_days, color_continuous_scale='Viridis', title='Consumables Needed')
+        fig.update_layout(xaxis_title='Docking Days', yaxis_title='Amount Needed')
+        fig.update_layout(template='plotly_dark')
+        #fig.update_layout(plot_bgcolor='rgba(15, 15, 15, 0.7)', paper_bgcolor='rgba(15, 15, 15, 0.9)')
+        #Generate standalone HTML
+        plot_html = pyo.plot(fig, include_plotlyjs=False, output_type='div', show_link=False)
+
+        fig2 = px.line(x=docking_days, y=need_to_send_list)
+        fig2.update_layout(xaxis_title='Docking Days', yaxis_title='Amounts')
+        fig2.update_layout(template='plotly_dark')
+        line_html = fig2.to_html(include_plotlyjs=True, full_html=False)
+
+        #plot end----------------
         g_date = info[1]
         greatest_qty = info[2]
         greatest_date = f'Date with highest consumable amount: {g_date}'
@@ -56,7 +110,7 @@ def run_script(): #name of this function is where route goes
         table_data = table_d.to_html(classes='table', index=False)
         return render_template('forecast.html', table_data=table_data,
                                 consumable=consumable, greatest_date=greatest_date,
-                                qty=qty)
+                                qty=qty, plot_html=plot_html, line_html=line_html)
 
 
 

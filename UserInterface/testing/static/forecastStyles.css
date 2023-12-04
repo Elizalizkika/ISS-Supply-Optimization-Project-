@@ -78,6 +78,7 @@ p{
     padding: 20px;
     border-radius: 10px;
     background-color: rgb(39, 39, 39);
+    margin-bottom: 50px;
 
 
 }
@@ -87,7 +88,7 @@ p{
     border-color: rgb(39, 39, 39);
     border-radius: 10px;
     padding: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     background-color: rgb(39, 39, 39);
 
 }
@@ -124,6 +125,24 @@ p{
     border: none;
 }
 
+#plot{
+    margin-bottom: 50px;
+    border: solid;
+    border-color: rgb(39, 39, 39);
+    border-radius: 10px;
+    background-color: rgb(39, 39, 39);
+
+
+}
+#line{
+    margin-bottom: 50px;
+    border: solid;
+    border-color: rgb(39, 39, 39);
+    border-radius: 10px;
+    background-color: rgb(39, 39, 39);
+
+
+}
 
 
 

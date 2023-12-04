@@ -209,7 +209,8 @@ def create_table_water(consumable):
     #print(table_data)
     date = dock_days_list[index_of_greatest_number]
 
-    return readable, date, g_qty
+    return readable, date, g_qty, dock_days_list, need_to_send_list
+
 
 
 #consumable = 'Water'

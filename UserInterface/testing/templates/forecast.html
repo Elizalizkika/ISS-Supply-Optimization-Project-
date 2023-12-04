@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<link href="forecastStyles.css" rel="stylesheet"/>-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='forecastStyles.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     <title>Forecast</title>
 </head>
@@ -38,11 +39,16 @@
             <div id="largest-qty">
                 <p>{{qty}}</p>
             </div>
+            <div id="plot">
+                {{ plot_html|safe }}
+            </div>
+            <div id="line">
+                {{ line_html|safe }}
+            </div>
         </div>
 
 
     </div>
-
 
    
 </body>

@@ -190,7 +190,7 @@ def create_table_oxygen(consumable):
     g_qty = cts_tuple[2]    
 
     dock_days_list.pop()
-    print(len(dock_days_list))
+   # print(len(dock_days_list))
     readable = pd.DataFrame(
         {'Docking Days': dock_days_list,
          'Amount of Consumable to Send': need_to_send_list
@@ -201,6 +201,7 @@ def create_table_oxygen(consumable):
     #table_data = readable.to_html(index=False)
     #print(table_data)
     date = dock_days_list[index_of_greatest_number]
-    return readable, date, g_qty
+    return readable, date, g_qty, dock_days_list, need_to_send_list
+
 #consumable = 'Oxygen'
 #create_table_oxygen(consumable)
