@@ -1,11 +1,13 @@
-h1{
-    margin-left: 20%;
-}
+/* import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+
 body {
     background-color: rgb(0, 0, 30);
     /*background-color: white;*/
     color: rgb(200, 200, 200);
-    font-family: 'Inter', sans-serif;
+    /*font-family: 'Inter', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+
     /*
     display: flex;
     flex-direction: row;
@@ -13,6 +15,11 @@ body {
     */
     margin-left: 15%;
     /*width: 35%;*/
+}
+
+h1{
+    margin-left: 20%;
+    letter-spacing: .2rem;
 }
 #item-selection {
     display: flex;
@@ -48,6 +55,7 @@ button{   /*had item-selection before  */
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    margin-top: 5%;
    
 }
 
@@ -66,16 +74,56 @@ p{
 
 #largest-qty{
     border: solid;
-    border-color:rgb(200, 200, 200);
+    border-color:rgb(39, 39, 39);
     padding: 20px;
     border-radius: 10px;
+    background-color: rgb(39, 39, 39);
+
 
 }
 
 #date{
     border: solid;
-    border-color: rgb(200, 200, 200);
+    border-color: rgb(39, 39, 39);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 100px;
+    background-color: rgb(39, 39, 39);
+
 }
+
+.table {
+    border-collapse: collapse;
+    border-color: black;
+    border-radius: 10px;
+    overflow: hidden;
+    /*border-spacing: 0px;*/
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 400px;
+    /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
+    text-align: center;
+    letter-spacing: .2rem;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;    
+    
+}
+.table td{
+    height: 40px;
+    border: none;
+
+}
+.table tr:nth-child(even){
+    background-color: rgb(39, 39, 39);
+    
+}
+.table thead tr {
+    background-color: rgb(64, 64, 64);
+    color: rgb(248, 248, 248);
+    height: 50px;
+    border: none;
+}
+
+
+
+

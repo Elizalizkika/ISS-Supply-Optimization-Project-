@@ -28,7 +28,7 @@ def run_script(): #name of this function is where route goes
         greatest_qty = info[2]
         greatest_date = f'Date with highest consumable amount: {g_date}'
         qty = f'The greatest amount of consumable needed: {greatest_qty}'
-        table_data = table_d.to_html(index=False)
+        table_data = table_d.to_html(classes='table', index=False)
         return render_template('forecast.html', table_data=table_data,
                                 consumable=consumable, greatest_date=greatest_date,
                                 qty=qty)
@@ -41,7 +41,7 @@ def run_script(): #name of this function is where route goes
         greatest_qty = info[2]
         greatest_date = f'Date with highest consumable amount: {g_date}'
         qty = f'The greatest amount of consumable needed: {greatest_qty}'
-        table_data = table_d.to_html(index=False)
+        table_data = table_d.to_html(classes='table', index=False)
         return render_template('forecast.html', table_data=table_data,
                                 consumable=consumable, greatest_date=greatest_date,
                                 qty=qty)
@@ -53,7 +53,7 @@ def run_script(): #name of this function is where route goes
         greatest_qty = info[2]
         greatest_date = f'Date with highest consumable amount: {g_date}'
         qty = f'The greatest amount of consumable needed: {greatest_qty}'
-        table_data = table_d.to_html(index=False)
+        table_data = table_d.to_html(classes='table', index=False)
         return render_template('forecast.html', table_data=table_data,
                                 consumable=consumable, greatest_date=greatest_date,
                                 qty=qty)
