@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>LOGIN</title>
+	<title>To The Moon</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
      <form action="login.php" method="post">
-     	<h2>LOGIN</h2>
+     	<h2>To The Moon</h2>
      	<?php if (isset($_GET['error'])) { ?>
      		<p class="error"><?php echo $_GET['error']; ?></p>
      	<?php } ?>
