@@ -26,9 +26,9 @@ def docking_days():
         (flight_plan['datedim'].dt.year <= 2025) & 
         (flight_plan['event'] == 'Dock')
     ]['datedim'].to_list()
-    print("number of days til next 2 years\n",dock_days_list_next2years)
-    print(len (dock_days_list))
-    print("number of days til next 2 years\n",len(dock_days_list_next2years))
+    #print("number of days til next 2 years\n",dock_days_list_next2years)
+    #print(len (dock_days_list))
+   #print("number of days til next 2 years\n",len(dock_days_list_next2years))
 
     return dock_days_list, num_days
 
@@ -45,22 +45,21 @@ def crew_per_docking(dock_days_list):
         crew_per_dock.append(Amount)
 
     #number of crew members on board during each dock
-    print("number of crew per docking\n",crew_per_dock)
-    print(len(crew_per_dock))
+   # print("number of crew per docking\n",crew_per_dock)
+   # print(len(crew_per_dock))
 
     return crew_per_dock
 
 
 def consumption_rates(consumable): 
-
     #grab rates
     rater = pd.read_csv(r'/Users/eliza/Desktop/rates_definition.csv')
 
 
     #consumable must match a consumable on the rates csv. case sensitive.
-    #consumable = 'Pretreat Tanks'
-    #consumable = 'Air'
-    #consumable = 'Water'
+    consumable = 'Pretreat Tanks'
+    consumable = 'Air'
+    consumable = 'Water'
     crew_used = 2.7
 
     #sum of generated
@@ -73,19 +72,22 @@ def consumption_rates(consumable):
     crew_check = rater[rater['affected_consumable'] == consumable]['units'].tolist()
     combine =  '\t'.join(crew_check)
 
-    print(crew_check)
+    #print(crew_check)
     if 'Crew' in combine:
         per_crew = True
     else:
         per_crew = False
 
-    print(per_crew)
+    #print(per_crew)
 
     #prints
     print("Consumable used = ", sum_usage)
     print("Consumable generated = ", sum_generated)
     #net_consumable = sum_generated - sum_usage
     #print("net consumable per day= ", net_consumable)
+
+
+
     return per_crew, sum_usage, sum_generated
 
 
@@ -95,7 +97,6 @@ def consumables_to_send(num_days, sum_usage, dock_days_list, per_crew, sum_gener
 
     #create a list of base rates 
     listofrates = [sum_usage] * len(dock_days_list)
-    #print(len(dock_days_list))
     consumable_to_send = []
     consumable_water_to_send = []
     consumable_water_to_send_new = []
@@ -125,14 +126,14 @@ def consumables_to_send(num_days, sum_usage, dock_days_list, per_crew, sum_gener
 
     for i in range(len(crew_per_dock)):
         multiplied_crew_numbers.append(crew_per_dock[i] * 2.7)
-    print("amount of water use by crew = ",multiplied_crew_numbers)
+    #print("amount of water use by crew = ",multiplied_crew_numbers)
 
     #rounding
     for i, value in enumerate(intermediate):
         current_sum+=value
         consumable_to_send.append(math.trunc(current_sum))
         current_sum = current_sum - math.trunc(current_sum)
-    print("amount of water need to send = ",consumable_to_send)
+    #print("amount of water need to send = ",consumable_to_send)
     #print (len(consumable_to_send))
 
     #rounding amount of water for crew
@@ -144,37 +145,45 @@ def consumables_to_send(num_days, sum_usage, dock_days_list, per_crew, sum_gener
 
     need_to_send_list = []
 
-
     for i in range(len(consumable_to_send)):
         x = 2.7 * num_days[i] * crew_per_dock[i]
-        #print(x)
         y = 23.55 * num_days[i]
-        #print(y)
         x = x + y
-        #print(x)
-        #y = sum_generated * num_days[i]
-        #print(y)
-        #need_to_send = x + y
-        #print(need_to_send)
         need_to_send_list.append(x)
 
-    print("amount of water need to send = ",need_to_send_list)
-    print (len(need_to_send_list))
+    print("The amount need to send = ",need_to_send_list)
     for i, value in enumerate(need_to_send_list):
         current_sum3+=value
         consumable_to_send_water.append(math.trunc(current_sum3))
         current_sum3 = current_sum3 - math.trunc(current_sum3)
-    #print("amount of water need to send = ",consumable_to_send_water)
-    #print (len(consumable_to_send))
 
 
 
-    greatest_number = max(need_to_send_list[26:63])
-    print("The greatest number in the array is:", greatest_number)
-
+    greatest_number = max(need_to_send_list[26:62])
     index_of_greatest_number = need_to_send_list.index(greatest_number)
-    print("The index of the greatest number is:", index_of_greatest_number)
-    return need_to_send_list, index_of_greatest_number, greatest_number
+    #print("The index of the greatest number is:", index_of_greatest_number)
+
+    greatest_number = round(greatest_number,2)
+    print("The greatest number in the array is:", greatest_number, "Liters")
+
+  
+
+    sum_number = round(sum(need_to_send_list[26:62]),2)
+    print("the sum amount of the next two years",sum_number, "Liters")
+
+    sum_number2 = round(sum(need_to_send_list[0:26]),2)
+    print("the sum amount of the historical usage",sum_number2, "Liters")
+
+    the_difference = round(sum_number - sum_number2,2)
+    print("the difference between the next two years and the historical usage: ",the_difference, "Liters")
+
+    the_difference_percentage = round((the_difference/sum_number2) * 100,2)
+    #print(the_difference/sum_number2)
+    print("the difference percentage between the next two years and the historical usage: ",the_difference_percentage,"%")
+
+ 
+    return need_to_send_list, index_of_greatest_number, greatest_number, the_difference_percentage
+
 
 def create_table_water(consumable):
     ##RUN ALL or this wont work
@@ -191,7 +200,9 @@ def create_table_water(consumable):
                                             sum_generated, crew_per_dock)
     need_to_send_list = cts_tuple[0]
     index_of_greatest_number = cts_tuple[1]
-    g_qty = cts_tuple[2]
+    g_qty = cts_tuple[2]    #greatest_number 
+    the_difference_percentage = cts_tuple[3]
+
 
     ##RUN ALL or this wont work
     dock_days_list.pop()
@@ -200,16 +211,14 @@ def create_table_water(consumable):
         {'Docking Days': dock_days_list,
          'Amount of Consumable to Send': need_to_send_list
         })
-    print(len(dock_days_list))
-    print(len(need_to_send_list))
-    print(dock_days_list[51])
 
     #table_data = readable.to_html(index=False)
     #print(readable) 
     #print(table_data)
     date = dock_days_list[index_of_greatest_number]
+    days_rem = "( 62 ) days remaining before the next dock is dispatched and a workforce of ( 11 ) crews."
 
-    return readable, date, g_qty, dock_days_list, need_to_send_list
+    return readable, date, g_qty, dock_days_list, need_to_send_list, the_difference_percentage, days_rem
 
 
 

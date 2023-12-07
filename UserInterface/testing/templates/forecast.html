@@ -17,13 +17,19 @@
             <button type="submit" id="water-button" name="consumable_name" value="Water">Water</button>
             <button type="submit" id="air-button" name="consumable_name" value="Oxygen">Oxygen</button>
             <button type="submit" id="food-button" name="consumable_name" value="US Food BOBs">Food</button>
+            <button type="submit" id="acy-button" name="consumable_name" value="ACY Inserts">ACY Inserts</button>
+            <button type="submit" id="fi-button" name="consumable_name" value="Filter Inserts">Filter Inserts</button>
+            <button type="submit" id="kto-button" name="consumable_name" value="KTO">KTO</button>
+            <button type="submit" id="nitrogen-button" name="consumable_name" value="Nitrogen">Nitrogen</button>
+            <button type="submit" id="pt-button" name="consumable_name" value="Pretreat Tanks">Pretreat Tanks</button>
+            <button type="submit" id="ur-button" name="consumable_name" value="Urine Receptacle">Urine Receptacle</button>
         </form>
 
     <!--img and output will remain hidden unless button is selected-->
 
     </nav>
     <div>
-        <h1>Consumable selected: {{ consumable }}</h1>
+        <h1>{{message}}</h1>
     </div>
     <div id="display-info">
         <div id="cons_table">
@@ -33,18 +39,26 @@
             {% endif %}
         </div>
         <div id="nextto-table">
+            <div id="p_diff">
+                <p>{{percent_diff_q}}</p>
+                <p>{{percent_diff}}</p>
+            </div>
             <div id="date">
                 <p>{{greatest_date}}</p>
+            </div>
+            <div id="days-rem">
+                <p>{{days_rem}}</p>
             </div>
             <div id="largest-qty">
                 <p>{{qty}}</p>
             </div>
+            <div id="bar">
+                {{bar_html|safe}}
+            </div>
             <div id="plot">
                 {{ plot_html|safe }}
             </div>
-            <div id="line">
-                {{ line_html|safe }}
-            </div>
+
         </div>
 
 

@@ -7,7 +7,6 @@ body {
     color: rgb(200, 200, 200);
     /*font-family: 'Inter', sans-serif;*/
     font-family: 'Roboto', sans-serif;
-
     /*
     display: flex;
     flex-direction: row;
@@ -59,7 +58,6 @@ button{   /*had item-selection before  */
     justify-content: space-between;
     flex-direction: row;
     margin-top: 5%;
-   
 }
 
 p{
@@ -72,7 +70,20 @@ p{
     display: flex;
     flex-direction: column;
     margin-right: 5%;
+    margin-left: 5%;
    
+}
+
+#p_diff, #num_diff{
+    border: solid;
+    border-color:rgb(39, 39, 39);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(39, 39, 39);
+    margin-bottom: 50px;
+}
+#p_diff > p, #num_diff > p{
+    align-items: center;
 }
 
 #largest-qty{
@@ -86,14 +97,13 @@ p{
 
 }
 
-#date{
+#date, #days-rem{
     border: solid;
     border-color: rgb(39, 39, 39);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 50px;
     background-color: rgb(39, 39, 39);
-
 }
 
 .table {
@@ -110,7 +120,7 @@ p{
     letter-spacing: .2rem;
     font-weight: 100;
     font-family: 'Roboto', sans-serif;    
-    
+   
 }
 .table td{
     height: 40px;
@@ -137,15 +147,14 @@ p{
 
 
 }
-#line{
+#bar{
     margin-bottom: 50px;
     border: solid;
     border-color: rgb(39, 39, 39);
     border-radius: 10px;
     background-color: rgb(39, 39, 39);
-
-
 }
+
 
 
 
