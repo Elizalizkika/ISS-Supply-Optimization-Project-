@@ -24,6 +24,7 @@ app = Flask(__name__, static_url_path='/static')
 
 def index():
     message = f'Select Consumable'
+
     return render_template('forecast.html', message=message)
 
 @app.route('/run_script', methods=['POST']) #METHODS WITH AN S
@@ -35,22 +36,31 @@ def run_script(): #name of this function is where route goes
         #table_data = create_table_water(consumable)
         #return render_template('forecast.html', table_data=table_data, consumable=consumable)
         info = create_table_water(consumable)
+        unit = 'L'
     elif consumable == 'Oxygen':
         info = create_table_oxygen(consumable)
+        unit = 'lbs'
     elif consumable == 'US Food BOBs':
         info = create_table_food(consumable)
+        unit = 'BOBs'
     elif consumable == 'ACY Inserts':
         info = create_table_acy(consumable)
+        unit = 'Inserts'
     elif consumable == 'Filter Inserts':
         info = create_table_fi(consumable)
+        unit = 'Inserts'
     elif consumable == 'KTO':
         info = create_table_kto(consumable)
+        unit = 'KTOs'
     elif consumable == 'Nitrogen':
         info = create_table_nitrogen(consumable)
+        unit = 'lbs'
     elif consumable == 'Pretreat Tanks':
         info = create_table_pt(consumable)
+        unit = 'Pretreat Tanks'
     elif consumable == 'Urine Receptacle':
         info = create_table_ur(consumable)
+        unit = 'Receptacles'
 
     message = f'Consumable selected: {consumable}'
     table_d = info[0]
@@ -79,7 +89,7 @@ def run_script(): #name of this function is where route goes
     g_date = info[1]
     greatest_qty = info[2]
     greatest_date = f'Date with highest consumable amount: {g_date}'
-    qty = f'The greatest amount of consumable needed: {greatest_qty}'
+    qty = f'The greatest amount of consumable needed: {greatest_qty} {unit}'
     table_data = table_d.to_html(classes='table', index=False)
     percent_diff_q = f'Difference percentage between the next two years and the historical usage:'
     percent_d = info[5]
