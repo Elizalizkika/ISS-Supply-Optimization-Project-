@@ -199,8 +199,8 @@ def create_table_pt(consumable):
 
     dock_days_list.pop()
     readable = pd.DataFrame(
-        {'Docking Days': dock_days_list,
-         'Amount of Consumable to Send': need_to_send_list
+        {'Docking Date': dock_days_list,
+         'Estimate of send consumables': need_to_send_list
         })
 
     date = dock_days_list[index_of_greatest_number]
